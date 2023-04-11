@@ -7420,6 +7420,15 @@ void QPainter::addHyperlink(const QRectF &r, const QUrl &url)
     d->engine->addHyperlink(worldTransform().mapRect(r), url);
 }
 
+void QPainter::addSignField(const QRectF &r, const QString &text, const QString &name, bool multiLine, bool password, bool readOnly, int maxLength) {
+    Q_D(QPainter);
+    if (!d->engine) {
+        qWarning("QPainter::addSignField: Painter not active");
+        return;
+    }
+    d->engine->addSignField(worldTransform().mapRect(r), text, name, multiLine, password, readOnly, maxLength);
+}
+
 void QPainter::addTextField(const QRectF &r, const QString &text, const QString &name, bool multiLine, bool password, bool readOnly, int maxLength) {
     Q_D(QPainter);
     if (!d->engine) {
